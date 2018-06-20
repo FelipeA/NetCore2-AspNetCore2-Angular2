@@ -1,0 +1,62 @@
+<section class="hero is-primary is-fullheight">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title pacifico larger-text">
+          Modern Web Store
+        </h1>
+        <div class="columns is-mobile">
+          <div class="column is-half is-offset-one-quarter">
+            <div class="notification is-danger" *ngIf="errors.length > 0">
+              <ul>
+                <li *ngFor="let err of errors">{{ err.message }}</li> 
+              </ul>
+            </div>
+            <form [formGroup]="form">
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="text" placeholder="Nome" formControlName="firstName">
+                  <span class="tag is-danger" *ngIf="!form.controls.firstName.valid && !form.controls.firstName.pristine">Nome inválido</span>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="text" placeholder="Sobrenome" formControlName="lastName">
+                </div>
+              </div>
+              <div class="field">
+                  <div class="control" id="emailControl">
+                      <input class="input" type="email" (blur)="checkEmail()" placeholder="E-mail" formControlName="email" [ngClass]="{'is-danger' : !form.controls.email.valid && !form.controls.email.pristine}">
+                      <span class="tag is-danger" *ngIf="!form.controls.email.valid && !form.controls.email.pristine">E-mail inválido</span>
+                    </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="text" placeholder="CPF" formControlName="document" maxlength="11" number>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="text" placeholder="Usuário" formControlName="username">
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="password" placeholder="Senha" formControlName="password">
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="password" placeholder="Confirmar senha" formControlName="confirmPassword">
+                </div>
+              </div>
+              <div>
+                <button (click)="submit()" [disabled]="!form.valid" class="button is-primary is-inverted is-outlined is-fullwidth">CADASTRAR</button>
+                <br>
+                <a routerLink="/" class="button is-primary is-inverted is-outlined is-fullwidth">Voltar para a tela de login</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

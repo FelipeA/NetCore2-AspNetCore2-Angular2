@@ -1,0 +1,5 @@
+﻿1. Criar uma Migration
+Add-Migration v1 (Version)
+
+2. Executar a Migration
+Update-Database

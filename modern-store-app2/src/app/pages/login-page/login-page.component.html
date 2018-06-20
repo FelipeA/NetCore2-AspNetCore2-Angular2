@@ -1,0 +1,61 @@
+<section class="hero is-primary is-fullheight">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title pacifico larger-text">
+        Modern Web Store
+      </h1>
+
+      <div class="Columns">
+        <div class="column is-half is-offset-one-quarter">
+          <div class="notification is-danger" *ngIf="errors.length > 0">
+            <ul>
+              <li *ngFor="let err of errors">{{ err.message }}</li>
+            </ul>
+          </div>
+          <form [formGroup]="form">
+            <div class="field">
+              <div class="control" id="usernameControl">
+                <input class="input" [ngClass]="{'is-danger': (!form.controls.username.valid && !form.controls.username.pristine) }" type="username"
+                  placeholder="Usuário" formControlName="username">
+                <span class="tag is-danger" *ngIf="!form.controls.username.valid && !form.controls.username.pristine">Usuário inválido</span>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input class="input" [ngClass]="{'is-danger': (!form.controls.password.valid && !form.controls.password.pristine) }" type="password"
+                  placeholder="Senha" formControlName="password">
+                <span class="tag is-danger" *ngIf="!form.controls.password.valid && !form.controls.password.pristine">Senha inválida</span>
+              </div>
+            </div>
+            <div>
+              <button (click)="submit()" [disabled]="!form.valid" class="button is-primary is-inverted is-outlined is-fullwidth">Entrar</button>
+              <br>
+              <a routerLink="/signup" class="button is-primary is-inverted is-outlined is-fullwidth">Ainda não sou cadastrado</a>
+              <hr>
+              <button (click)="showModal()" class="button is-primary is-inverted is-outlined is-fullwidth">Termos de Uso</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="modal" id="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Termos de Uso</p>
+      <button (click)="hideModal()" class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      Aqui vão os termos de uso do site.
+    </section>
+    <footer class="modal-card-foot">
+      <!-- <button class="button is-success">Save changes</button> -->
+      <!-- <button class="button">Cancel</button> -->
+      <button (click)="hideModal()" class="button">OK</button>
+    </footer>
+  </div>
+</div>
